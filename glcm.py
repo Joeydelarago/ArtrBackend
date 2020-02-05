@@ -17,16 +17,16 @@ def testing():
     PATCH_SIZE = 512
 
     # open the camera image
-    image_1 = io.imread('image.jpg', as_gray=True)
+    image_1 = io.imread('images/image.jpg', as_gray=True)
     image_1 = skimage.img_as_uint(image_1)
 
-    image_2 = io.imread('image_2.jpg', as_gray=True)
+    image_2 = io.imread('images/image_2.jpg', as_gray=True)
     image_2 = skimage.img_as_uint(image_2)
 
-    image_3 = io.imread('image_3.jpg', as_gray=True)
+    image_3 = io.imread('images/image_3.jpg', as_gray=True)
     image_3 = skimage.img_as_uint(image_3)
 
-    image_4 = io.imread('image_4.jpg', as_gray=True)
+    image_4 = io.imread('images/image_4.jpg', as_gray=True)
     image_4 = skimage.img_as_uint(image_4)
 
     # image_3 = io.imread('image_4.jpg')

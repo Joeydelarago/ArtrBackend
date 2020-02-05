@@ -11,33 +11,6 @@ import requests
 from io import BytesIO
 import threading
 
-
-from sklearn.compose import ColumnTransformer
-from sklearn.pipeline import Pipeline
-from sklearn.impute import SimpleImputer
-from sklearn.preprocessing import OneHotEncoder
-from sklearn.preprocessing import StandardScaler
-from sklearn.preprocessing import LabelEncoder
-from sklearn.decomposition import PCA
-from sklearn.decomposition import TruncatedSVD
-from sklearn.linear_model import LinearRegression
-from sklearn.metrics import mean_squared_error
-from sklearn.metrics import mean_absolute_error
-from sklearn.model_selection import cross_val_score
-from sklearn.model_selection import cross_val_predict
-from sklearn.metrics import confusion_matrix
-from sklearn.linear_model import LogisticRegression
-from sklearn.linear_model import SGDRegressor
-from sklearn.model_selection import ShuffleSplit
-from sklearn.model_selection import KFold
-from sklearn.model_selection import StratifiedShuffleSplit
-from sklearn.model_selection import StratifiedKFold
-from sklearn.dummy import DummyClassifier
-from sklearn.dummy import DummyRegressor
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.feature_extraction.text import CountVectorizer
-from sklearn.svm import SVR
-
 ID = 696969
 class BasicGUI:
     loaded_images = []
@@ -86,16 +59,6 @@ class BasicGUI:
 def getArtworks(collection):
     return list(collection.find().limit(200).sort([("_id", pymongo.ASCENDING)]))
 
-def cross_val_score(df):
-    numeric_features = ["yearEarly"]
-    nominal_features = ["techniques", "materials", "iconClass"]
-    preprocessor = ColumnTransformer([("num", StandardScaler(), numeric_features),
-                                      ("nom", OneHotEncoder(handle_unknown="ignore"),
-                                       nominal_features)], remainder="drop")
-
-    pipeline = Pipeline([("pre", preprocessor), ("est", LinearRegression())])
-    y = df["mpg"].values
-    np.mean(cross_val_score(pipeline, df, y, scoring="neg_mean_absolute_error", cv=10))
 
 def artworks_to_dataframe(cursor):
     artworks = []

@@ -37,6 +37,7 @@ def image_results(id):
     user_data2 = user_collection.find_one({'user': id})
     return "", 200
 
+
 def get_user_artwork_titles(id):
     user_data = user_collection.find_one({'user': id})
     if user_data != None:
@@ -44,6 +45,7 @@ def get_user_artwork_titles(id):
     else:
         artwork_titles = []
     return artwork_titles
+
 
 def get_user_artwork_documents(id):
     titles = get_user_artwork_titles(id)
@@ -134,6 +136,9 @@ def get_artworks_jaccard_set(id, amount):
         suggested_artworks.append(get_artworks_random(id, amount - len(suggested_artworks)))
 
     return suggested_artworks
+
+def suggest_artworks(num=10):
+    pass
 
 def artworks_to_dataframe(cursor):
     artworks = []

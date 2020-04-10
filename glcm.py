@@ -13,6 +13,7 @@ from skimage.color import rgb2gray
 from skimage import io
 
 
+
 def testing():
     PATCH_SIZE = 512
 
@@ -105,7 +106,7 @@ def analyze_artwork(work) -> []:
     image = image.astype(int)
 
 
-    glcm = greycomatrix(image, distances=[5], angles=[0], levels=300,
+    glcm = greycomatrix(image, distances=[5], angles=[0], levels=500,
                         symmetric=True, normed=True)
     dissimelaritiy = greycoprops(glcm, 'dissimilarity')[0, 0]
     correlation = greycoprops(glcm, 'correlation')[0, 0]
@@ -118,14 +119,19 @@ def analyze_artwork(work) -> []:
 
 def update_artworks(collection):
     works = artwork_collection.find({})
-
+    # works = resume_from("Landscape with a Peddler and Woman Resting", list(works))
+    # works = works[2:]
     for item in works:
-        gclm_values  = analyze_artwork(item)
-        item['dissimilarity'] = gclm_values[0]
-        item['contrast'] = gclm_values[1]
-        item['energy'] = gclm_values[2]
-        item['correlation'] = gclm_values[3]
-        collection.update_one({'_id': item['_id']}, {"$set": item}, upsert=False)
+        try:
+            if 'dissimilarity' not in item.keys():
+                gclm_values  = analyze_artwork(item)
+                item['dissimilarity'] = gclm_values[0]
+                item['contrast'] = gclm_values[1]
+                item['energy'] = gclm_values[2]
+                item['correlation'] = gclm_values[3]
+                collection.update_one({'_id': item['_id']}, {"$set": item}, upsert=False)
+        except Exception as e:
+            print(e)
 
 
 

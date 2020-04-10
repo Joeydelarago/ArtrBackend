@@ -5,7 +5,7 @@ from pymongo import MongoClient
 import sys
 import json
 
-from utilities import connect_to_mongodb
+from artr_utilities import connect_to_mongodb
 
 url="https://www.rijksmuseum.nl/api/en/collection?key=8PkrYFyD&format=json&type=painting&imgonly=True&p=%s&ps=100"
 url1="https://www.rijksmuseum.nl/api/en/collection/%s?key=8PkrYFyD&format=json"

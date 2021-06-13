@@ -3,8 +3,8 @@ import requests
 from artr_utilities import *
 from wikipedia_scraping import open_id_file
 
-api_key = 'acc_ca02bf645611730'
-api_secret = '90bc931bb4840ee124ad32fe9bc120cf'
+api_key = ''
+api_secret = ''
 
 
 def get_imagga_tags():
